@@ -7,10 +7,14 @@ const app = express();
 
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
+
 config();
 loaders();
 
 app.listen(process.env.PORT, () => {
   console.log("Server is running on port " + process.env.PORT);
-  app.use("/user", UserRoutes);
+  app.use("/users", UserRoutes);
 });

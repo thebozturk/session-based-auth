@@ -1,13 +1,6 @@
 const CryptoJs = require("crypto-js");
 const JWT = require("jsonwebtoken");
 
-const passwordToHash = (password) => {
-  return CryptoJs.HmacSHA256(
-    password,
-    CryptoJs.HmacSHA1(password, process.env.PASSWORD_HASH).toString()
-  ).toString();
-};
-
 const generateAccessToken = (user) => {
   return JWT.sign(
     { name: user.email, ...user },
@@ -25,7 +18,6 @@ const generateRefreshToken = (user) => {
 };
 
 module.exports = {
-  passwordToHash,
   generateAccessToken,
   generateRefreshToken,
 };
